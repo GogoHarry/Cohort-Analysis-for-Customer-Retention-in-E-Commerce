@@ -109,6 +109,7 @@ data_cleaned["cohort_index"] = create_cohort_index(first_month, first_year, late
 
 3. **Retention Rate Analysis**:
    - Calculating the monthly retention rate for each cohort
+   - Visualizing the retention rate matrix using a heatmap
 ```python
   # Create Cohort Table: Count unique customers per cohort date and cohort index
 cohort_info = (
@@ -126,9 +127,7 @@ cohort_table.index = cohort_table.index.strftime('%B %Y')
 
 # Display the cohort table
 cohort_table
-```
-   - Visualizing the retention rate matrix using a heatmap
-```python
+
   # Visualize Retention Rate as a Heatmap
 plt.figure(figsize=(20, 10))
 sns.heatmap(
@@ -149,12 +148,11 @@ plt.show()
 
 4. **Churn Rate Analysis**:
    - Calculating the churn rate (1 - retention rate) for each cohort
+   - Analyzing the overall churn trend over time
 ```python
   # Calculate Churn Rate (1 - Retention Rate)
 churn_matrix = 1 - new_cohort_table  # Using the cohort table with percentage values
-```
-   - Analyzing the overall churn trend over time
-```python
+
  # Visualize Churn Trends as a Heatmap
 plt.figure(figsize=(14, 6))
 sns.heatmap(
@@ -175,6 +173,7 @@ plt.show()
 
 5. **Purchase Quantity Analysis**:
    - Examining the total and average quantity purchased by each cohort over time
+   - Identifying patterns and anomalies in purchase behavior
 ```python
   # Calculate the total quantity bought per cohort
 quantity_bought = (
@@ -208,9 +207,7 @@ plt.ylabel("Cohort Date", fontsize=14)
 
 # Display the heatmap
 plt.show()
-```
-   - Identifying patterns and anomalies in purchase behavior
-```python
+  
   # Calculate Average Quantity Purchased by Cohort
 average_quantity = (
     data_cleaned.groupby(["cohort date", "cohort_index"])["Quantity"]
